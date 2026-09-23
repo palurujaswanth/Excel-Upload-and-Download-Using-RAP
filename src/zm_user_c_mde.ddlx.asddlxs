@@ -1,0 +1,15 @@
+@Metadata.layer: #CORE
+annotate entity ZC_USER_C with
+{
+  @UI.lineItem: [ { position: 10, importance: #HIGH, label: 'Serial No' } ]
+  @UI.identification: [ { position: 10, label: 'Serial No' } ]
+  SerialNo;
+
+  @UI.lineItem: [ { position: 20, importance: #HIGH, label: 'Object Type' } ]
+  @UI.identification: [ { position: 20, label: 'Object Type' } ]
+  ObjectType;
+
+  @UI.lineItem: [ { position: 30, importance: #HIGH, label: 'Object Name' } ]
+  @UI.identification: [ { position: 30, label: 'Object Name' } ]
+  ObjectName;
+}

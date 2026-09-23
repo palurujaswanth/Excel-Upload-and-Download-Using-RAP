@@ -1,0 +1,117 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+  typeName: 'User',
+  typeNamePlural: 'Users',
+  title: { type: #STANDARD, value: 'EmpId' },
+  description: { value: 'DevId' }
+}
+annotate entity ZC_USER_P
+    with 
+{
+  @UI.facet: [
+    {
+      purpose: #HEADER,
+      type: #DATAPOINT_REFERENCE,
+      position: 10,
+      targetQualifier: 'description'
+    },
+    {
+      purpose: #HEADER,
+      type: #DATAPOINT_REFERENCE,
+      position: 20,
+      targetQualifier: 'fileStatus'
+    },
+    {
+      purpose: #HEADER,
+      type: #DATAPOINT_REFERENCE,
+      position: 25,
+      targetQualifier: 'templateStatus'
+    },
+    {
+      purpose: #HEADER,
+      type: #DATAPOINT_REFERENCE,
+      position: 30,
+      targetQualifier: 'fileChanged'
+    },
+    {
+      purpose: #STANDARD,
+      type: #COLLECTION,
+      label: 'General Info',
+      position: 10,
+      id: 'idBasic'
+    },
+    {
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'User Info',
+      position: 10,
+      id: 'idUser',
+      parentId: 'idBasic'
+    },
+    {
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Log Details',
+      position: 20,
+      id: 'idLogs',
+      parentId: 'idBasic',
+      targetQualifier: 'logs'
+    },
+    {
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Developed Objects',
+      position: 20,
+      id: 'idDevObj',
+      targetElement: '_UserDev'
+    }
+  ]
+
+  @UI.lineItem: [
+    { position: 10, importance: #HIGH, label: 'User Id' },
+    { type: #FOR_ACTION, dataAction: 'uploadExcelData', label: 'Upload Data' },
+    { type: #FOR_ACTION, dataAction: 'DownloadExcel', label: 'Download Excel' }
+  ]
+  @UI.identification: [
+    { position: 10, label: 'User Id' },
+    { type: #FOR_ACTION, dataAction: 'uploadExcelData', label: 'Upload Data' },
+    { type: #FOR_ACTION, dataAction: 'DownloadExcel', label: 'Download Excel' }
+  ]
+  @UI.selectionField: [ { position: 10 } ]
+  @EndUserText.label: 'User Id'
+  EmpId;
+
+  @UI.lineItem: [ { position: 20, importance: #HIGH, label: 'Development Id' } ]
+  @UI.identification: [ { position: 20, label: 'Development Id' } ]
+  @UI.selectionField: [ { position: 20 } ]
+  @EndUserText.label: 'Development Id'
+  DevId;
+
+  @UI.lineItem: [ { position: 30, importance: #HIGH, label: 'Development Description' } ]
+  @UI.dataPoint: { qualifier: 'description', title: 'Development Description' }
+  @UI.identification: [ { position: 30, label: 'Development Description' } ]
+  DevDescription;
+
+  @UI.identification: [ { position: 40, label: 'Choose Excel File' } ]
+  Attachment;
+
+  @UI.lineItem: [ { position: 40, importance: #HIGH, label: 'Excel Filename' } ]
+  Filename;
+
+  @UI.lineItem: [ { position: 50, importance: #HIGH, label: 'File Status', criticality: 'Criticality' } ]
+  @UI.dataPoint: { qualifier: 'fileStatus', title: 'File Status', criticality: 'Criticality' }
+  FileStatus;
+
+  @UI.lineItem: [ { position: 55, importance: #HIGH, label: 'Template Status', criticality: 'TemplateCrticality' } ]
+  @UI.dataPoint: { qualifier: 'templateStatus', title: 'Template Status', criticality: 'TemplateCrticality' }
+  TemplateStatus;
+
+  @UI.lineItem: [ { position: 60, importance: #HIGH, label: 'Last Changed At' } ]
+  @UI.fieldGroup: [ { qualifier: 'logs', label: 'Last Changed At', position: 20 } ]
+  @UI.dataPoint: { qualifier: 'fileChanged', title: 'Last Changed At' }
+  LocalLastChangedAt;
+
+  @UI.lineItem: [ { position: 70, importance: #HIGH, label: 'Created By' } ]
+  @UI.fieldGroup: [ { qualifier: 'logs', label: 'Created By', position: 10 } ]
+  LocalCreatedBy;
+}
