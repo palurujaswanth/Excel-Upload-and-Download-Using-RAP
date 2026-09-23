@@ -1,29 +1,29 @@
 # Excel Upload & Download Using SAP BTP ABAP RAP
 
-A full-stack, transactional enterprise application developed using the **SAP RESTful Application Programming Model (RAP)** on **SAP BTP ABAP Environment**[cite: 1]. This solution enables business users to dynamically generate and download standardized `.xlsx` templates, ingest spreadsheet records via binary streaming using the native **XCO Library**, perform schema and key-matching validations, and persist child line items transactionally through Fiori Elements[cite: 1].
+A full-stack, transactional enterprise application developed using the **SAP RESTful Application Programming Model (RAP)** on **SAP BTP ABAP Environment**. This solution enables business users to dynamically generate and download standardized `.xlsx` templates, ingest spreadsheet records via binary streaming using the native **XCO Library**, perform schema and key-matching validations, and persist child line items transactionally through Fiori Elements.
 
 ---
 
 ##  Key Features
 
-* **Dynamic Excel Template Export (`DownloadExcel`)**[cite: 1]:
+* **Dynamic Excel Template Export (`DownloadExcel`)**:
   * Generates formatted `.xlsx` templates dynamically at runtime using `xco_cp_xlsx` write operations without relying on pre-stored static files[cite: 1].
   * Auto-populates root entity file attachments and synchronizes UI template availability states (`TemplateStatus`)[cite: 1].
 
-* **Direct Binary Ingestion (`uploadExcelData`)**[cite: 1]:
+* **Direct Binary Ingestion (`uploadExcelData`)**:
   * Reads raw attachment streams directly from the database table (`ztdb_user_parent`) and extracts rows using coordinate-bound pattern selections (`A1:E`)[cite: 1].
   * Eliminates third-party transformation tools by using the native ABAP Cloud XCO XLSX library[cite: 1].
 
-* **Strict Validation & Data Normalization Engine**[cite: 1]:
-  * **Header Validation**: Verifies all 5 mandatory columns (`User Id`, `Development Id`, `Development Description`, `Object Type`, `Object Name`) with uppercase normalization and whitespace trimming[cite: 1].
+* **Strict Validation & Data Normalization Engine**:
+  * **Header Validation**: Verifies all 5 mandatory columns (`User Id`, `Development Id`, `Development Description`, `Object Type`, `Object Name`) with uppercase normalization and whitespace trimming.
   * **Key Normalization**: Solves leading-zero mismatches across numeric domain keys (`NUMC` screen keys vs. raw unpadded spreadsheet strings)[cite: 1].
   * **Sanitization**: Filters out empty or corrupted spreadsheet rows automatically[cite: 1].
 
-* **Transactional Child Record Persistence**[cite: 1]:
+* **Transactional Child Record Persistence**:
   * Uses association-based transactional modification (`MODIFY ENTITIES ... CREATE BY \_UserDev`)[cite: 1].
   * Automatically assigns sequential line item keys (`SerialNo`) and wipes obsolete records before committing new rows[cite: 1].
 
-* **Dynamic UX & Instance Feature Control**[cite: 1]:
+* **Dynamic UX & Instance Feature Control**:
   * **Determinations**: Auto-calculates lifecycle statuses (`File Selected`, `Excel Uploaded`, `Template Present/Absent`) upon attachment modification[cite: 1].
   * **Dynamic Feature Control**: Toggles the availability of action buttons based on real-time instance state[cite: 1].
   * **UI Criticality**: Highlights lifecycle statuses with standard SAP Fiori color codes[cite: 1].
