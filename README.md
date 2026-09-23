@@ -7,8 +7,8 @@ A full-stack, transactional enterprise application developed using the **SAP RES
 ##  Key Features
 
 * **Dynamic Excel Template Export (`DownloadExcel`)**:
-  * Generates formatted `.xlsx` templates dynamically at runtime using `xco_cp_xlsx` write operations without relying on pre-stored static files[cite: 1].
-  * Auto-populates root entity file attachments and synchronizes UI template availability states (`TemplateStatus`)[cite: 1].
+  * Generates formatted `.xlsx` templates dynamically at runtime using `xco_cp_xlsx` write operations without relying on pre-stored static files.
+  * Auto-populates root entity file attachments and synchronizes UI template availability states (`TemplateStatus`).
 
 * **Direct Binary Ingestion (`uploadExcelData`)**:
   * Reads raw attachment streams directly from the database table (`ztdb_user_parent`) and extracts rows using coordinate-bound pattern selections (`A1:E`)
